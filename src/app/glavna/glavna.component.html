@@ -1,0 +1,43 @@
+<p>{{inputBroj}}</p>
+Input: <input matInput  type="text" name="poruka" value="" [(ngModel)]="poruka">
+<p></p>
+<button mat-button (click)="onChange1()">Potvrdi</button> &nbsp;
+<button mat-button (click)="onChange2()">Promeni komp</button>
+
+<p></p>
+<button mat-button (click)="getBitcoinValue()">GET BITCOIN</button>
+
+<div>
+    <p>Bitcoin 1: </p>
+    <p *ngIf="valueBit!=null" style="font-weight: bolder;"> EUR: {{valueBit.eur}}</p>
+    <p *ngIf="valueBit!=null" style="font-weight: bolder;"> GBP: {{valueBit.gbp}}</p>
+    <p *ngIf="valueBit!=null" style="font-weight: bolder;"> USD: {{valueBit.usd}}</p>
+</div>
+<div>
+    <p>Bitcoin 2: </p>
+    <p *ngIf="valueBit2!=null" style="font-weight: bolder;"> EUR: {{valueBit2.eur}}</p>
+    <p *ngIf="valueBit2!=null" style="font-weight: bolder;"> GBP: {{valueBit2.gbp}}</p>
+    <p *ngIf="valueBit2!=null" style="font-weight: bolder;"> USD: {{valueBit2.usd}}</p>
+</div>
+<div>
+    <p>Bitcoin 3: </p>
+    <p *ngIf="valueBit3!=null" style="font-weight: bolder;"> EUR: {{valueBit3.eur}}</p>
+    <p *ngIf="valueBit3!=null" style="font-weight: bolder;"> GBP: {{valueBit3.gbp}}</p>
+    <p *ngIf="valueBit3!=null" style="font-weight: bolder;"> USD: {{valueBit3.usd}}</p>
+</div>
+
+
+<p></p>
+<div>
+    <p>All requests: {{allRequests}}</p>
+</div>
+<div>
+    <p>Pending requests: {{pendingRequests}}</p>
+</div>
+
+<app-comp2 #andjela *ngIf="showChild1" [(broj)]="inputBroj"></app-comp2>
+<app-comp3 #andjela *ngIf="showChild2"></app-comp3>
+
+
+
+

@@ -1,0 +1,26 @@
+<p>Stores and products</p>
+
+<section>
+    <mat-form-field appearance="outline">
+      <mat-label>Select store</mat-label>
+      <mat-select  [(value)]="selectedStoreId" (selectionChange)="chooseStore($event)">
+        <mat-option *ngFor="let store of stores" [value]="store.Id">
+        {{ store.Name }}
+       </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+  <p>You selected store with ID: {{selectedStoreId}}</p>
+  <div *ngIf="selectedStoreId!=null">
+    <section>
+        <mat-form-field appearance="outline">
+          <mat-label>Products</mat-label>
+          <mat-select >
+            <mat-option *ngFor="let product of products" [value]="product">
+            {{ product.Id }}
+           </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+  </div>
+ 

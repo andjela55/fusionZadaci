@@ -1,0 +1,58 @@
+<div  fxLayout="row" fxLayoutAlign="end center" >
+  <button mat-raised-button color="primary" (click)="onLogout()" style="margin-left: 40%;">Logout</button>
+</div>
+
+<p *ngIf="user!=null">Username: {{user.UserName}}</p>
+<p *ngIf="user!=null">ClientName: {{user.ClientName}}</p>
+<form class="example-form" >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>First name</mat-label>
+      <input type="text" matInput placeholder="First name" name="firstName" [(ngModel)]="firstName" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last name</mat-label>
+        <input type="text" matInput placeholder="Last name"  name="lastName" [(ngModel)]="lastName" >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date of birth</mat-label>
+        <input (dateInput)="OnDateChange($event.value)" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </form>
+  <div fxLayoutAlign="start center">
+    <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-left: 40%;">Add user</button>
+  </div>
+  
+  <a href="https://www.w3schools.com">Visit W3Schools</a>
+
+  
+<div style="margin: 10px;">
+    <mat-table #table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" style="margin-top:10px">
+
+        <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell redOnHover *matCellDef="let user">{{user.firstName  | upperCasePipe}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+            <mat-cell redOnHover class="description-cell"
+                      *matCellDef="let user">{{user.lastName | upperCasePipe}}</mat-cell>
+    
+        </ng-container>
+    
+        <ng-container matColumnDef="dateOfBirth">
+            <mat-header-cell *matHeaderCellDef>Date of birth</mat-header-cell>
+            <mat-cell redOnHover class="duration-cell"
+                      *matCellDef="let user">{{user.birthDate | date:'mediumDate'}}</mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    
+    </mat-table>
+</div>
