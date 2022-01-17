@@ -3,7 +3,7 @@
 <section>
     <mat-form-field appearance="outline">
       <mat-label>Select store</mat-label>
-      <mat-select  [(value)]="selectedStoreId" (selectionChange)="chooseStore($event)">
+      <mat-select  [(value)]="selectedStoreId" (selectionChange)="chooseStore($event.value)">
         <mat-option *ngFor="let store of stores" [value]="store.Id">
         {{ store.Name }}
        </mat-option>
@@ -11,7 +11,7 @@
     </mat-form-field>
   </section>
   <p>You selected store with ID: {{selectedStoreId}}</p>
-  <div *ngIf="selectedStoreId!=null">
+  <div >
     <section>
         <mat-form-field appearance="outline">
           <mat-label>Products</mat-label>

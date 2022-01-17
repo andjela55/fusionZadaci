@@ -1,6 +1,5 @@
 import { Store, StoreService, Product } from './../services/store.service';
 import { Component, OnInit } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-drop-down-page',
@@ -9,27 +8,28 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class DropDownPageComponent implements OnInit {
 
-  stores:Store[]=[];
-  products:Product[]=[];
-  selectedStoreId!:string;
+  stores:Array<Store> = new Array<Store>();
+  products:Array<Product> = new Array<Product>();
+  selectedStoreId!:number;
+  ids:Array<number> = new Array<number>();
 
   constructor(private storeService:StoreService) { }
 
   ngOnInit(): void {
-    this.storeService.getStores().subscribe(res=>{
+    this.storeService.getShopsWithProducts().subscribe(res=>{
       this.stores=res;
-    });
+     
+    })
+ 
    
   }
-
-  chooseStore(event:any){
-
-    if(this.selectedStoreId!=null){
-      this.storeService.getProducts(this.selectedStoreId).subscribe(res=>{
-        this.products=res;
-      })
-    }
+  chooseStore(value:number){
+    console.log("vrednost:"+value);
+    this.products=this.stores[value-1].products;
   }
+
+
+
 
 
 
