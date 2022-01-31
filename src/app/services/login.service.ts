@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +11,7 @@ export class LoginService {
 
 
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router,private authService:AuthService) { }
   
   login(username:string,password:string):Observable<ResponseModel>{
 
@@ -37,8 +38,8 @@ export class LoginService {
   }
 
   logout(){
-    localStorage.removeItem("token");
-    this.router.navigate(['/login']);
+    this.authService.logout();
+  
   }
 
 

@@ -1,6 +1,7 @@
+import { HeaderComponent } from './../header/header.component';
 import { LoginService } from './../services/login.service';
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   username!:string;
   password!:string;
 
+  
 
   constructor(private loginService:LoginService,private authService:AuthService,private router:Router) { }
 
@@ -25,9 +27,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.username,this.password).subscribe(res=>{
       this.authService.setCredentials(res.access_token);
       this.router.navigate(["materials"]);
-     /* if(this.authService.isUserLoggedIn()){
-        this.authService.getLoggedUser().subscribe();
-      }*/
+    
     })
     
    

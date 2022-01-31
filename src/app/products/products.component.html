@@ -1,0 +1,83 @@
+<p>Stores and products</p>
+
+<section>
+  <mat-form-field appearance="outline">
+    <mat-label>Select store</mat-label>
+    <mat-select [(ngModel)]="selectedStore" (selectionChange)="onSelectStore($event)">
+      <mat-option *ngFor="let store of stores" [value]="store">
+        {{ store.Name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<div>
+  <button  mat-raised-button color="primary" (click)="getCertainProducts()" style="margin-left: 87%;">Get certain products</button>
+</div>
+
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input #yourElement matInput type="text" placeholder="Search products"  >
+  </mat-form-field>
+</div>
+
+
+<div style="margin: 10px;">
+  <mat-table #table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" style="margin-top:10px">
+
+    <ng-container matColumnDef="ID">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.Id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.Name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Manufacturer">
+      <mat-header-cell *matHeaderCellDef>Manufacturer</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.Manufacturer}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.Description}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Price">
+      <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.Price.Value}} {{product.Price.Currency}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onSelectProduct(row)"></mat-row>
+
+  </mat-table>
+</div>
+
+
+
+<mat-card  *ngIf="selectedProduct!=null" >
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>{{selectedProduct.Name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Edit name</p>
+    <mat-form-field fxFlex="40%">
+      <input name matInput type="text" placeholder="Enter  name" [(ngModel)]="editedProduct.Name">
+    </mat-form-field>
+    <p>Edit manufacturer</p>
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" placeholder="Enter manufacturer" [(ngModel)]="editedProduct.Manufacturer">
+    </mat-form-field>
+    <p>Edit description</p>
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" placeholder="Enter description" [(ngModel)]="editedProduct.Description">
+    </mat-form-field>
+    <p>Edit price</p>
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" placeholder="Enter new price" [(ngModel)]="editedProduct.Price.Value">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onSave()">SAVE</button>
+    <button mat-button (click)="onCancel()">CANCEL</button>
+  </mat-card-actions>
+</mat-card>

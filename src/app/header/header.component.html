@@ -1,0 +1,15 @@
+<div  fxLayout="row" fxLayoutAlign="end center"  style="background-color: rgb(147, 172, 255); margin-top: -20px;" >
+    <div>
+     
+      </div>
+      <div>
+        <p style="font-weight: bolder; padding: 5px;">Welcome {{user.UserName}}</p>
+        <button  mat-raised-button  [routerLink]="['/materials']" color="primary" >Materials</button>
+        <button  mat-raised-button [routerLink]="['/products']" color="primary">Products</button>
+
+    </div>
+  
+      <div>
+        <button  mat-raised-button color="primary" (click)="onLogout()" style="margin-left: 90%;">Logout</button>
+    </div>
+  </div>

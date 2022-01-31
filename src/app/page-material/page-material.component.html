@@ -1,9 +1,11 @@
-<div  fxLayout="row" fxLayoutAlign="end center" >
-  <button mat-raised-button color="primary" (click)="onLogout()" style="margin-left: 40%;">Logout</button>
-</div>
 
-<p *ngIf="user!=null">Username: {{user.UserName}}</p>
-<p *ngIf="user!=null">ClientName: {{user.ClientName}}</p>
+
+<button  mat-raised-button (click)="callApi()"  color="primary">CALL API POST</button>
+
+<button  mat-raised-button (click)="callApi2()"  color="primary">CALL API GET</button>
+<div>
+  {{response|json }}
+</div>
 <form class="example-form" >
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>First name</mat-label>

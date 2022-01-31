@@ -3,20 +3,20 @@
 <section>
     <mat-form-field appearance="outline">
       <mat-label>Select store</mat-label>
-      <mat-select  [(value)]="selectedStoreId" (selectionChange)="chooseStore($event.value)">
-        <mat-option *ngFor="let store of stores" [value]="store.Id">
+      <mat-select [(ngModel)]="selectedStore">
+        <mat-option *ngFor="let store of stores" [value]="store">
         {{ store.Name }}
        </mat-option>
       </mat-select>
     </mat-form-field>
   </section>
-  <p>You selected store with ID: {{selectedStoreId}}</p>
+ 
   <div >
     <section>
         <mat-form-field appearance="outline">
           <mat-label>Products</mat-label>
           <mat-select >
-            <mat-option *ngFor="let product of products" [value]="product">
+            <mat-option *ngFor="let product of selectedStore.products" [value]="product">
             {{ product.Id }}
            </mat-option>
           </mat-select>
